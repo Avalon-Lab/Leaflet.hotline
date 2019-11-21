@@ -5,6 +5,7 @@
 */
 
 /*global L*/
+'use strict';
 
 var leaflet = L;
 
