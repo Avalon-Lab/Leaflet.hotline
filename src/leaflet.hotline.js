@@ -4,27 +4,14 @@
  https://github.com/iosphere/Leaflet.hotline/
 */
 
-(function (root, plugin) {
-	/**
-	 * UMD wrapper.
-	 * When used directly in the Browser it expects Leaflet to be globally
-	 * available as `L`. The plugin then adds itself to Leaflet.
-	 * When used as a CommonJS module (e.g. with browserify) only the plugin
-	 * factory gets exported, so one hast to call the factory manually and pass
-	 * Leaflet as the only parameter.
-	 * @see {@link https://github.com/umdjs/umd}
-	 */
-	if (typeof define === 'function' && define.amd) {
-		define(['leaflet'], plugin);
-	} else if (typeof exports === 'object') {
-		module.exports = plugin;
-	} else {
-		plugin(root.L);
-	}
-}(this, function (L) {
+export default function(leaflet) {
 	// Plugin is already added to Leaflet
-	if (L.Hotline) {
+	if (leaflet.Hotline) {
 		return L;
+	}
+
+	if (leaflet == null) {
+		leaflet = window.L
 	}
 
 	/**
@@ -266,14 +253,14 @@
 	};
 
 
-	var Renderer = L.Canvas.extend({
+	var Renderer = leaflet.Canvas.extend({
 		_initContainer: function () {
-			L.Canvas.prototype._initContainer.call(this);
+			leaflet.Canvas.prototype._initContainer.call(this);
 			this._hotline = new Hotline(this._container);
 		},
 
 		_update: function () {
-			L.Canvas.prototype._update.call(this);
+			leaflet.Canvas.prototype._update.call(this);
 			this._hotline.width(this._container.width);
 			this._hotline.height(this._container.height);
 		},
@@ -315,7 +302,7 @@
 	});
 
 	var renderer = function (options) {
-		return L.Browser.canvas ? new Renderer(options) : null;
+		return leaflet.Browser.canvas ? new Renderer(options) : null;
 	};
 
 
@@ -325,8 +312,8 @@
 		 * @see {@link http://leafletjs.com/reference.html#lineutil-clipsegment|Leaflet}
 		 */
 		clipSegment: function (a, b, bounds, useLastCode, round) {
-			var codeA = useLastCode ? this._lastCode : L.LineUtil._getBitCode(a, bounds),
-					codeB = L.LineUtil._getBitCode(b, bounds),
+			var codeA = useLastCode ? this._lastCode : leaflet.LineUtil._getBitCode(a, bounds),
+					codeB = leaflet.LineUtil._getBitCode(b, bounds),
 					codeOut, p, newCode;
 
 			// save 2nd code to avoid calculating it on the next segment
@@ -342,8 +329,8 @@
 				// other cases
 				} else {
 					codeOut = codeA || codeB;
-					p = L.LineUtil._getEdgeIntersection(a, b, codeOut, bounds, round);
-					newCode = L.LineUtil._getBitCode(p, bounds);
+					p = leaflet.LineUtil._getEdgeIntersection(a, b, codeOut, bounds, round);
+					newCode = leaflet.LineUtil._getBitCode(p, bounds);
 
 					if (codeOut === codeA) {
 						p.z = a.z;
@@ -360,7 +347,7 @@
 	};
 
 
-	L.Hotline = L.Polyline.extend({
+	leaflet.Hotline = leaflet.Polyline.extend({
 		statics: {
 			Renderer: Renderer,
 			renderer: renderer
@@ -381,14 +368,17 @@
 		},
 
 		getRGBForValue: function (value) {
-			return this._renderer._hotline.getRGBForValue(value);
+			this._renderer._hotline.palette(this.options.palette)
+            this._renderer._hotline._min  = this.options.min
+            this._renderer._hotline._max = this.options.max
+            return this._renderer._hotline.getRGBForValue(value);
 		},
 
 		/**
 		 * Just like the Leaflet version, but with support for a z coordinate.
 		 */
 		_projectLatlngs: function (latlngs, result, projectedBounds) {
-			var flat = latlngs[0] instanceof L.LatLng,
+			var flat = latlngs[0] instanceof leaflet.LatLng,
 					len = latlngs.length,
 					i, ring;
 
@@ -444,14 +434,14 @@
 		},
 
 		_clickTolerance: function () {
-			return this.options.weight / 2 + this.options.outlineWidth + (L.Browser.touch ? 10 : 0);
+			return this.options.weight / 2 + this.options.outlineWidth + (leaflet.Browser.touch ? 10 : 0);
 		}
 	});
 
-	L.hotline = function (latlngs, options) {
-		return new L.Hotline(latlngs, options);
+	leaflet.hotline = function (latlngs, options) {
+		return new leaflet.Hotline(latlngs, options);
 	};
 
 
 	return L;
-}));
+};

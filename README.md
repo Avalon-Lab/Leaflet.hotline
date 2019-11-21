@@ -43,13 +43,29 @@ var hotlineLayer = L.hotline(data, options).addTo(map);
 <!-- Include Leaflet -->
 <script src="path/to/leaflet.js"></script>
 <!-- Include Leaflet.hotline -->
-<script src="path/to/leaflet.hotline.js"></script>
+<script type="module" src="path/to/leaflet.hotline.js"></script>
 <script>
 	// Create a hotline layer
 	var hotlineLayer = L.hotline(data, options).addTo(map);
 </script>
 ```
 
+### WebComponent
+
+```html
+import L from "leaflet/dist/leaflet.js";
+import leafletHotline from "leaflet-hotline/dist/leaflet.hotline.js";
+
+constructor() {
+    super();
+    leafletHotline(L);
+}
+
+xxx() {
+    let hotlineLayer = L.hotline(hotlinePoints, hotlineOption);
+    hotlineLayer.addTo(this.map);
+}
+```
 
 ## Documentation
 
@@ -86,6 +102,7 @@ You can use the following options to style the hotline:
 
 ## Changelog
 
+- **0.5.0** - Transform IIFE to simple exported method to be able to use in WebComponent (like LitElement)
 - **0.4.0** - Adds compatibility for Leaflet >1.0.2
 - **0.3.0** - Adds compatibility for Leaflet 1.0.0-rc.1
 - **0.2.0** - Adds `getRGBForValue` method to the hotline layer
