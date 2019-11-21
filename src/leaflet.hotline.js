@@ -4,6 +4,8 @@
  https://github.com/iosphere/Leaflet.hotline/
 */
 
+/*global L*/
+
 export default function(leaflet) {
 	// Plugin is already added to Leaflet
 	if (leaflet.Hotline) {
@@ -11,7 +13,7 @@ export default function(leaflet) {
 	}
 
 	if (leaflet == null) {
-		leaflet = window.L
+		leaflet = L
 	}
 
 	/**

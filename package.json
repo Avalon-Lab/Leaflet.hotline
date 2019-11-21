@@ -5,11 +5,11 @@
   "main": "src/leaflet.hotline.js",
   "scripts": {
     "test": "npm run lint",
-    "lint": "eslint src/leaflet.hotline.js",
+    "lint": "eslint src/leaflet.hotline.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/iosphere/Leaflet.hotline.git"
+    "url": "git://github.com/Avalon-Lab/Leaflet.hotline.git"
   },
   "keywords": [
     "Leaflet",
@@ -25,9 +25,9 @@
   "author": "Jonas Coch",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/iosphere/Leaflet.hotline/issues"
+    "url": "https://github.com/Avalon-Lab/Leaflet.hotline/issues"
   },
-  "homepage": "https://iosphere.github.io/Leaflet.hotline/demo/",
+  "homepage": "https://avalon-Lab.github.io/Leaflet.hotline/demo/index.html",
   "devDependencies": {
     "eslint": "^6.6.0"
   }

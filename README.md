@@ -12,30 +12,16 @@ Leaflet.hotline needs a browser with canvas support because it creates its own r
 
 ## Installation
 
-* Run `npm install leaflet-hotline`
+* Run `npm install Avalon-Lab\leaflet-hotline`
 * or download the latest package
 
 
 ## Demo
 
-<https://iosphere.github.io/Leaflet.hotline/demo/>
+<https://avalon-Lab.github.io/Leaflet.hotline/demo/index.html>
 
 
 ## Basic usage
-
-### Node.js / Browserify
-
-```js
-// Include Leaflet
-var L = require('leaflet')
-
-// Pass Leaflet to the plugin.
-// Only required to overload once, subsequent overloads will return the same instance.
-require('leaflet-hotline')(L);
-
-// Create a hotline layer
-var hotlineLayer = L.hotline(data, options).addTo(map);
-```
 
 ### Browser
 
