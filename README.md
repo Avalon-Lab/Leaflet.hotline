@@ -28,9 +28,9 @@ Leaflet.hotline needs a browser with canvas support because it creates its own r
 ```html
 <!-- Include Leaflet -->
 <script src="path/to/leaflet.js"></script>
-<script type="module">
-	import hotlinePlugin from "../src/leaflet.hotline.js";
-	hotlinePlugin();
+<!-- Include Leaflet.hotline -->
+<script type="module" src="path/to/leaflet.hotline.js"></script>
+<script>
 	// Create a hotline layer
 	var hotlineLayer = L.hotline(data, options).addTo(map);
 </script>
@@ -40,12 +40,7 @@ Leaflet.hotline needs a browser with canvas support because it creates its own r
 
 ```html
 import L from "leaflet/dist/leaflet.js";
-import hotlinePlugin from "leaflet-hotline/dist/leaflet.hotline.js";
-
-constructor() {
-    super();
-    hotlinePlugin(L);
-}
+import "leaflet-hotline/dist/leaflet.hotline.js";
 
 xxx() {
     let hotlineLayer = L.hotline(hotlinePoints, hotlineOption);

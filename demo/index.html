@@ -3,6 +3,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
 	<script src="js/coords.js"></script>
+	<script src="../src/leaflet.hotline.js"></script>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
 	<style>
 		header,
@@ -92,10 +93,7 @@
 			</label>
 		</aside>
 	</section>
-	<script type="module">
-		import hotlinePlugin from "../src/leaflet.hotline.js";
-		hotlinePlugin();
-
+	<script>
 		var tiles = L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		});
