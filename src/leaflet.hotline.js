@@ -7,13 +7,14 @@
 /*global L*/
 
 export default function(leaflet) {
-	// Plugin is already added to Leaflet
-	if (leaflet.Hotline) {
-		return L;
-	}
 
 	if (leaflet == null) {
 		leaflet = L
+	}
+
+	// Plugin is already added to Leaflet
+	if (leaflet.Hotline) {
+		return L;
 	}
 
 	/**
